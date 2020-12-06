@@ -282,7 +282,7 @@ public class OinarrizkoEragiketak {
         Session saioa = sf.openSession();
         saioa.beginTransaction();
         List<Object[]> result = saioa.createQuery("from Album AS al INNER JOIN Artist AS art ON al.artistId = art.artistid").list(); // HQL deitzen dan lengoaia idatziko dugu Querya
-                    System.out.println("Artista");
+                    System.out.println("Artista bere album-ekin");
                     System.out.println("--------------------");
                     for (Object[] aRow : result) {
                         Album alb = (Album) aRow[0];
