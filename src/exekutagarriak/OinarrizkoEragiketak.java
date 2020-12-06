@@ -30,7 +30,8 @@ public class OinarrizkoEragiketak {
             System.out.println("    4. Datuak Ikusi Zatika");
             System.out.println("    5. Datu Bakarra Ikusi");
             System.out.println("    6. Datu Bat Aldatu");
-            System.out.println("    7. Irten");
+            System.out.println("    7. Artista guztien albunak ikusi");
+            System.out.println("    8. Irten");
 
             System.out.print("Sartu zenbaki bat aukeratzeko: ");
             aukera = readInt(sc);
@@ -132,8 +133,10 @@ public class OinarrizkoEragiketak {
                     if (idAldatu > 0)
                         datuBatAldatu(taulaAldatuToLower, idAldatu, izenBerria);
                     break;
-                    
                 case 7:
+                    datuGuztiakIkusi();
+                    break;
+                case 8:
                     irten = true;
                     break;
                 default:
@@ -190,7 +193,8 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Artist a : (List<Artist>) result) {
                         System.out.printf("ID| %d, Izena:%s \n", a.getArtistid(), a.getName());
-                    }       break;
+                    }
+                    break;
                 }
             case "album":
                 {
@@ -199,7 +203,8 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Album a : (List<Album>) result) {
                         System.out.printf("ID| %d, Album:%s, ArtitsID| %d \n", a.getAlbumId(), a.getTitle(), a.getArtistId());        
-                    }       break;
+                    }
+                    break;
                 }
             default:
                 System.err.println("Sartu behar duzuna Album edo Artist da.!");
@@ -220,7 +225,8 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Artist a : (List<Artist>) result) {
                         System.out.printf("ID| %d, Izena:%s \n", a.getArtistid(), a.getName());
-                    }       break;
+                    }
+                    break;
                 }
             case "album":
                 {
@@ -229,7 +235,8 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Album a : (List<Album>) result) {
                         System.out.printf("ID| %d, Album:%s, ArtitsID| %d \n", a.getAlbumId(), a.getTitle(), a.getArtistId());
-                    }       break;
+                    }
+                    break;
                 }
             default:
                 System.err.println("Sartu behar duzuna Album edo Artist da.!");
@@ -250,7 +257,8 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Artist a : (List<Artist>) result) {
                         System.out.printf("ID| %d, Izena:%s \n", a.getArtistid(), a.getName());
-                    }       break;
+                    }
+                    break;
                 }
             case "album":
                 {
@@ -259,12 +267,28 @@ public class OinarrizkoEragiketak {
                     System.out.println("--------------------");
                     for (Album a : (List<Album>) result) {
                         System.out.printf("ID| %d, Album:%s, ArtitsID| %d \n", a.getAlbumId(), a.getTitle(), a.getArtistId());
-                    }       break;
+                    }
+                    break;
                 }
             default:
                 System.err.println("Sartu behar duzuna Album edo Artist da.!");
                 break;
         }
+        saioa.getTransaction().commit();
+        saioa.close();
+    }
+    
+    public static void datuGuztiakIkusi(){
+        Session saioa = sf.openSession();
+        saioa.beginTransaction();
+        List<Object[]> result = saioa.createQuery("from Album AS al INNER JOIN Artist AS art ON al.artistId = art.artistid").list(); // HQL deitzen dan lengoaia idatziko dugu Querya
+                    System.out.println("Artista");
+                    System.out.println("--------------------");
+                    for (Object[] aRow : result) {
+                        Album alb = (Album) aRow[0];
+                        Artist art = (Artist) aRow[1];
+                        System.out.printf("ID| %d, Album: %s, ID| %d, Izena:%s \n", alb.getAlbumId() , alb.getTitle(), art.getArtistid(), art.getName());
+                    }        
         saioa.getTransaction().commit();
         saioa.close();
     }
@@ -323,7 +347,8 @@ public class OinarrizkoEragiketak {
                         saioa.close();
                     } catch (ObjectNotFoundException onfe) {
                         System.out.println("Artista hori ez dago");
-                    }       break;
+                    }
+                    break;
                 }
             case "album":
                 {
@@ -340,7 +365,8 @@ public class OinarrizkoEragiketak {
                         saioa.close();
                     } catch (ObjectNotFoundException onfe) {
                         System.out.println("Artista hori ez dago");
-                    }       break;
+                    }
+                    break;
                 }
             default:
                 System.err.println("Sartu behar duzuna Album edo Artist da.!");

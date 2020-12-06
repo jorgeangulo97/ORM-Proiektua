@@ -14,8 +14,7 @@ public class Album {
     private int albumId;
     private String title = "";
     private int artistId;
-    private Artist artist = new Artist();
-
+    
     public Album() {}
         
     public Album(int albumId, String title, int artistId) {
@@ -46,14 +45,6 @@ public class Album {
 
     public void setArtistId(int artistId) {
         this.artistId = artistId;
-    }
-    
-    public Artist getArtist() {
-        return artist;
-    }
-    
-    public void setArtist(Artist artist) {
-        this.artist = artist;
     }
 
     @Override
