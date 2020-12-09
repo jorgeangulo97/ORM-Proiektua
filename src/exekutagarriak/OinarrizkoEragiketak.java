@@ -22,17 +22,18 @@ public class OinarrizkoEragiketak {
         int aukera; //Guardaremos la opcion del usuario
 
         while (!irten) {
-            System.out.println("\nCHINOOK DATUBASEA");
-            System.out.println("-------------------");
-            System.out.println("    1. Datuak Gorde");
-            System.out.println("    2. Datuak Ezabatu");
-            System.out.println("    3. Datu Guztiak Ikusi");
-            System.out.println("    4. Datuak Ikusi Zatika");
-            System.out.println("    5. Datu Bakarra Ikusi");
-            System.out.println("    6. Datu Bat Aldatu");
-            System.out.println("    7. Artista guztien albunak ikusi");
-            System.out.println("    8. Irten");
-
+            System.out.println("\n  CHINOOK DATUBASEA");
+            System.out.println("--------------------------------------");
+            System.out.println("|  1. Datuak Gorde                   |");
+            System.out.println("|  2. Datuak Ezabatu                 |");
+            System.out.println("|  3. Datu Guztiak Ikusi             |");
+            System.out.println("|  4. Datuak Ikusi Zatika            |");
+            System.out.println("|  5. Datu Bakarra Ikusi             |");
+            System.out.println("|  6. Datu Bat Aldatu                |");
+            System.out.println("|  7. Artista guztien albunak ikusi  |");
+            System.out.println("|  8. Irten                          |");
+            System.out.println("--------------------------------------");
+            
             System.out.print("Sartu zenbaki bat aukeratzeko: ");
             aukera = readInt(sc);
             
